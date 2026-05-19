@@ -4,24 +4,41 @@
  */
 package com.example.middleearth.dominio;
 
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+
 /**
  *
  * @author USER
  */
+@Entity
+@Table(name="personajes")
 public class Personaje {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
     private String nombre;
-    private String tipoRaza;
+    private String raza;
+    @Embedded
     private Atributos atributos;
+    @Transient
     private final RazaStrategy estrategia;
     
     @Override
     public String toString(){
-        return getNombre() + " es un " + getTipoRaza() + atributos.toString();
+        return getNombre() + " es un " + getRaza() + atributos.toString();
     }
     
-    public Personaje(String nombre, String tipoRaza, RazaStrategy estrategia) {
+    public Personaje(){}
+    
+    public Personaje(String nombre, String raza, RazaStrategy estrategia) {
         this.nombre = nombre;
-        this.tipoRaza = tipoRaza;
+        this.raza = raza;
         this.estrategia = estrategia;
         this.atributos = new Atributos();
     }
@@ -40,12 +57,12 @@ public class Personaje {
         this.nombre = nombre;
     }
 
-    public String getTipoRaza() {
-        return tipoRaza;
+    public String getRaza() {
+        return raza;
     }
 
-    public void setTipoRaza(String tipoRaza) {
-        this.tipoRaza = tipoRaza;
+    public void setRaza(String raza) {
+        this.raza = raza;
     }
 
     public Atributos getAtributos() {

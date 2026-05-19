@@ -64,7 +64,7 @@ function cargarPersonajes() {
             const fila = document.createElement('tr');
             fila.innerHTML = `
                 <td>${p.nombre || 'N/A'}</td>
-                <td>${p.tipoRaza || 'N/A'}</td>
+                <td>${p.raza || 'N/A'}</td>
                 <td>${p.habilidadEspecial || 'N/A'}</td>
                 <td>${p.estrategia?.habilidadEspecial || 'N/A'}</td>
                 <td>

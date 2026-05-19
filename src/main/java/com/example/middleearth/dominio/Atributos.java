@@ -4,10 +4,13 @@
  */
 package com.example.middleearth.dominio;
 
+import jakarta.persistence.Embeddable;
+
 /**
  *
  * @author USER
  */
+@Embeddable
 public class Atributos {
     private int fuerza;
     private int agilidad;

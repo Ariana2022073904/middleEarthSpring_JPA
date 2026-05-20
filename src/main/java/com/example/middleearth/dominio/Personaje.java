@@ -4,11 +4,13 @@
  */
 package com.example.middleearth.dominio;
 
+import com.example.middleearth.infraestructura.CharacterFactory;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PostLoad;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
@@ -27,12 +29,20 @@ public class Personaje {
     @Embedded
     private Atributos atributos;
     @Transient
-    private final RazaStrategy estrategia;
+    private RazaStrategy estrategia;
     
     @Override
     public String toString(){
         return getNombre() + " es un " + getRaza() + atributos.toString();
     }
+    
+    @PostLoad
+    public void reconstruirEstrategia() {
+        if (raza != null && !raza.isBlank()) {
+            this.estrategia = CharacterFactory.getStrategy(raza);
+        }
+    }
+
     
     public Personaje(){}
     

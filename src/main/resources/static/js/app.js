@@ -66,7 +66,6 @@ function cargarPersonajes() {
                 <td>${p.nombre || 'N/A'}</td>
                 <td>${p.raza || 'N/A'}</td>
                 <td>${p.habilidadEspecial || 'N/A'}</td>
-                <td>${p.estrategia?.habilidadEspecial || 'N/A'}</td>
                 <td>
                     Ag:${p.atributos?.agilidad || 0}, 
                     Fue:${p.atributos?.fuerza || 0}, 
